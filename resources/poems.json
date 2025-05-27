@@ -1,0 +1,56 @@
+[
+  {
+    "title": "《题临安邸》",
+    "author": "宋·林升",
+    "content": "山外青山楼外楼，西湖歌舞几时休？\n暖风熏得游人醉，直把杭州作汴州。",
+    "audio": "audio/poem1.wav"
+  },
+  {
+    "title": "《悯农二首·其一》",
+    "author": "唐·李绅",
+    "content": "春种一粒粟，秋收万颗子。\n四海无闲田，农夫犹饿死。",
+    "audio": "audio/poem2.wav"
+  },
+  {
+    "title": "《塞下曲·其三》",
+    "author": "唐·卢纶",
+    "content": "月黑雁飞高，单于夜遁逃。\n欲将轻骑逐，大雪满弓刀。",
+    "audio": "audio/poem3.wav"
+  },
+  {
+    "title": "《村居》",
+    "author": "清·高鼎",
+    "content": "草长莺飞二月天，拂堤杨柳醉春烟。\n儿童散学归来早，忙趁东风放纸鸢。",
+    "audio": "audio/poem4.wav"
+  },
+  {
+    "title": "《咏柳》",
+    "author": "唐·贺知章",
+    "content": "碧玉妆成一树高，万条垂下绿丝绦。\n不知细叶谁裁出，二月春风似剪刀。",
+    "audio": "audio/poem5.wav"
+  },
+  {
+    "title": "《赋得古原草送别》（节选）",
+    "author": "唐·白居易",
+    "content": "离离原上草，一岁一枯荣。\n野火烧不尽，春风吹又生。",
+    "audio": "audio/poem6.wav"
+  },
+  {
+    "title": "《晓出净慈寺送林子方》",
+    "author": "宋·杨万里",
+    "content": "毕竟西湖六月中，风光不与四时同。\n接天莲叶无穷碧，映日荷花别样红。",
+    "audio": "audio/poem7.wav"
+  },
+  {
+    "title": "《绝句》",
+    "author": "唐·杜甫",
+    "content": "两个黄鹂鸣翠柳，一行白鹭上青天。\n窗含西岭千秋雪，门泊东吴万里船。",
+    "audio": "audio/poem8.wav"
+  },
+  {
+    "title": "《舟夜书所见》",
+    "author": "清·查慎行",
+    "content": "月黑见渔灯，孤光一点萤。\n微微风簇浪，散作满河星。",
+    "audio": "audio/poem9.wav"
+  }
+]
