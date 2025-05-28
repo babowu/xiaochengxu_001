@@ -1,3 +1,9 @@
+// 初始化微信云开发
+wx.cloud.init({
+  env: "prod-5gxmxpe140e85d9f",
+  traceUser: true
+});
+
 import Emitter from '../libs/tinyemitter';
 import { SCREEN_WIDTH, SCREEN_HEIGHT } from '../render';
 import { musicInstance } from './music';
@@ -5,15 +11,27 @@ import { musicInstance } from './music';
 const atlas = wx.createImage();
 atlas.src = 'images/Common.png';
 
-// 从poems.json文件中读取古诗内容并解析为POEMS数组
 const loadPoems = () => {
   return new Promise((resolve) => {
-    wx.request({
-      url: 'https://your-backend-api.com/poems',
-      method: 'GET',
+    wx.cloud.callContainer({
+      config: {
+        env: "prod-5gxmxpe140e85d9f"
+      },
+      path: "poem",
+      header: {
+        "X-WX-SERVICE": "flask-vpfp",
+        "content-type": "application/json"
+      },
+      method: "GET",
+      data: "",
       success: (res) => {
         if (res.statusCode === 200 && res.data && Array.isArray(res.data)) {
-          resolve(res.data);
+          // 动态生成云存储 fileID 并更新 audio 字段
+          const poemsWithAudio = res.data.map(poem => ({
+            ...poem,
+            audio: `cloud://prod-5gxmxpe140e85d9f/audio/${poem.audio || 'file.wav'}`
+          }));
+          resolve(poemsWithAudio);
         } else {
           console.error('Failed to load poems from API:', res);
           resolve([
@@ -92,12 +110,22 @@ export default class GameInfo extends Emitter {
       // 延迟两秒播放古诗音频
       setTimeout(() => {
         this.audioContext = wx.createInnerAudioContext();
-        this.audioContext.src = this.currentPoem.audio;
-        this.audioContext.play();
-        this.audioContext.onEnded(() => {
-          this.drawRestartButton(ctx);
+        wx.cloud.downloadFile({
+          fileID: this.currentPoem.audio,
+          success: (res) => {
+            this.audioContext.src = res.tempFilePath;
+            this.audioContext.play();
+            this.audioContext.onEnded(() => {
+              this.drawRestartButton(ctx);
+            });
+          },
+          fail: (err) => {
+            console.error('Failed to download audio file:', err);
+            this.drawRestartButton(ctx);
+          }
         });
       }, 2000);
+
     }
 
     this.drawGameOverImage(ctx);
